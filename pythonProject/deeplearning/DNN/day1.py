@@ -25,6 +25,9 @@ if torch.cuda.is_available():
     torch.cuda.manual_seed_all(myseed)
 
 
+
+
+
 def get_device():
     ''' Get device (if GPU is available, use GPU) '''
     return 'cuda' if torch.cuda.is_available() else 'cpu'
@@ -53,7 +56,7 @@ def plot_pred(dv_set, model, device, lim=35., preds=None, targets=None):
         preds, targets = [], []
         for x, y in dv_set:
             x, y = x.to(device), y.to(device)
-            with torch.no_grad():
+            with torch.no_grad():#禁用梯度计算，常用于模型评估阶段
                 pred = model(x)
                 preds.append(pred.detach().cpu())
                 targets.append(y.detach().cpu())
