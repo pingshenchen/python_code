@@ -62,7 +62,6 @@ def plot_pred(dv_set, model, device, lim=35., preds=None, targets=None):
                 targets.append(y.detach().cpu())
         preds = torch.cat(preds, dim=0).numpy()
         targets = torch.cat(targets, dim=0).numpy()
-
     figure(figsize=(5, 5))
     plt.scatter(targets, preds, c='r', alpha=0.5)
     plt.plot([-0.2, lim], [-0.2, lim], c='b')
